@@ -1,0 +1,51 @@
+
+//Get user by ID
+GET http://localhost:8080/stream/User/1
+
+###
+//add new user
+POST http://localhost:8080/stream/User
+Content-Type: application/json
+
+{
+  "fname" : "TestUser2",
+  "lname" : "TestUser2Name",
+  "Image" : "ImageLink",
+  "email" : "test23@gmail.com"
+}
+
+###
+
+// login using password and email
+
+POST http://localhost:8080/stream/Login
+Content-Type: application/json
+
+{
+"email" : "test23@gmail.com",
+"password": "password"
+}
+
+
+###
+//Get all series
+GET http://localhost:8080/stream/Series/all
+
+###
+// add series
+POST http://localhost:8080/stream/Series
+Content-Type: application/json
+
+{
+"image" : "imageLink",
+"name" : "SeriesName",
+  "description": "text",
+  "airdate": "2020-02-20",
+  "genreid": 1,
+  "rating": 4
+}
+
+###
+//get single series
+
+GET http://localhost:8080/stream/Series/0
