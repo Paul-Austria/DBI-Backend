@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
 "image" : "imageLink",
-"name" : "SeriesName",
+"name" : "SeriesNameNew",
   "description": "text",
   "airdate": "2020-02-20",
   "genreid": 1,
@@ -49,3 +49,39 @@ Content-Type: application/json
 //get single series
 
 GET http://localhost:8080/stream/Series/0
+
+###
+//Get all episodes to one series
+GET  http://localhost:8080/stream/Series/1/Episodes
+
+###
+// Get episode by ID
+GET http://localhost:8080/stream/Episode/1
+
+###
+
+POST  http://localhost:8080/stream/Series/1/Episode
+Content-Type: application/json
+
+{
+  "name": "Name of episode",
+  "description": "desc",
+  "videolink": "videolink"
+}
+
+###
+//Get all Genres
+GET  http://localhost:8080/stream/Genre
+
+###
+// Get all Series of a Genre
+GET http://localhost:8080/stream/Genre/1/Series
+
+###
+//add Genre
+POST http://localhost:8080/stream/Genre
+Content-Type: application/json
+
+{
+  "name": "Genre Name"
+}

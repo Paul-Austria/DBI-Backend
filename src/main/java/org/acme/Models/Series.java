@@ -1,24 +1,36 @@
 package org.acme.Models;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
+import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
 @Entity
 @Table(name = "streaming.series")
 public class Series {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int Id;
     private String image;
     private String name;
     private String description;
     private Date airDate;
     private int episodeCount;
-    private  int genreid;
+
+    @ManyToOne
+    @JoinColumn(name = "genreId")
+    private Genre genre;
+
     private  float rating;
 
+    @OneToMany(mappedBy = "parent")
+    private List<Episode> episodes = new ArrayList<Episode>();
+
+
+
+    public void setEpisodes(List<Episode> episodes) {
+        this.episodes = episodes;
+    }
 
     public int getId() {
         return Id;
@@ -68,12 +80,12 @@ public class Series {
         this.episodeCount = episodeCount;
     }
 
-    public int getGenreid() {
-        return genreid;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenreid(int genreid) {
-        this.genreid = genreid;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public float getRating() {

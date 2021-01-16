@@ -1,5 +1,7 @@
 package org.acme.workloads;
 
+import org.acme.Models.Episode;
+import org.acme.Models.Genre;
 import org.acme.Models.Series;
 import org.acme.Models.User;
 
@@ -63,5 +65,54 @@ public class StreamingRepository  implements IStreamingRepository{
     public boolean addSeries(Series series) {
         entityManager.persist(series);
         return true;
+    }
+
+    @Override
+    public List<Episode> getEpisodeForSeries(int SID) {
+        var query = entityManager.createQuery("select p from Episode p where p.parent = :Id", Episode.class);
+        query.setParameter("Id", getSeries(SID));
+        return query.getResultList();
+    }
+
+    @Override
+    public Episode getEpisode(int id) {
+        var query = entityManager.createQuery("select p from Episode p where p.id = :Id", Episode.class);
+        query.setParameter("Id", id);
+        return query.getResultStream().findFirst().orElse(null);
+    }
+
+    @Override
+    public boolean addEpisode(int SeriesID,Episode episode) {
+        episode.setParent(getSeries(SeriesID));
+        Series series = getSeries(SeriesID);
+        series.setEpisodeCount(series.getEpisodeCount()+1);
+        entityManager.persist(episode);
+        return true;
+    }
+
+    @Override
+    public List<Genre> getGenres() {
+        var query = entityManager.createQuery("select p from Genre p", Genre.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Genre getGenre(int Id) {
+        var query = entityManager.createQuery("select p from Genre p where p.id = :ID", Genre.class);
+        query.setParameter("ID", Id);
+        return query.getResultStream().findFirst().orElse(null);
+    }
+
+    @Override
+    public boolean addGenre(Genre genre) {
+        entityManager.persist(genre);
+        return true;
+    }
+
+    @Override
+    public List<Series> getSeriesByGenre(int id) {
+        var query =  entityManager.createQuery("select g from Series g where g.genre = :genre");
+        query.setParameter("genre", getGenre(id));
+        return query.getResultList();
     }
 }

@@ -1,5 +1,7 @@
 package org.acme.workloads;
 
+import org.acme.Models.Episode;
+import org.acme.Models.Genre;
 import org.acme.Models.Series;
 import org.acme.Models.User;
 
@@ -45,6 +47,41 @@ public class StreamingService implements IStreamingService {
     @Override
     public boolean addSeries(Series series) {
         return streamingRepository.addSeries(series);
+    }
+
+    @Override
+    public List<Episode> getEpisodeForSeries(int SID) {
+        return streamingRepository.getEpisodeForSeries(SID);
+    }
+
+    @Override
+    public Episode getEpisode(int id) {
+        return streamingRepository.getEpisode((id));
+    }
+
+    @Override
+    public boolean addEpisode(int seriesID,Episode episode) {
+        return streamingRepository.addEpisode(seriesID, episode);
+    }
+
+    @Override
+    public List<Genre> getGenres() {
+        return streamingRepository.getGenres();
+    }
+
+    @Override
+    public Genre getGenre(int Id) {
+        return streamingRepository.getGenre(Id);
+    }
+
+    @Override
+    public boolean addGenre(Genre genre) {
+        return streamingRepository.addGenre(genre);
+    }
+
+    @Override
+    public List<Series> getSeriesByGenre(int id) {
+        return streamingRepository.getSeriesByGenre(id);
     }
 
 
