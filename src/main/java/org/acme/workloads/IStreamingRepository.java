@@ -1,9 +1,6 @@
 package org.acme.workloads;
 
-import org.acme.Models.Episode;
-import org.acme.Models.Genre;
-import org.acme.Models.Series;
-import org.acme.Models.User;
+import org.acme.Models.*;
 
 import java.util.List;
 
@@ -17,7 +14,7 @@ public interface IStreamingRepository {
     List<Series> getSeries();
 
     Series getSeries(int id);
-    boolean addSeries(Series series);
+    boolean addSeries(SeriesDTO series);
 
     List<Episode>  getEpisodeForSeries(int SID);
     Episode getEpisode(int id);
@@ -27,4 +24,17 @@ public interface IStreamingRepository {
     Genre getGenre(int Id);
     boolean addGenre(Genre genre);
     List<Series> getSeriesByGenre(int id);
+
+    List<Series> getBookmarkedSeries(int UserID);
+    boolean bookmarkSeries(int UserID, int SeriesID);
+    Bookmark getBookMark(int UserID, int SeriesID);
+
+    List<Episode> getWatchedEpisodes(int UserID);
+    List<Episode> getWatchedEpisodes(int UserID, int SeriesID);
+    boolean addToWatch(int UserID, int EpisodeID);
+    Watchlist getWatched(int UserID, int EpisodeID);
+
+    Company getCompany(int id);
+    boolean addCompany(Company company);
+    List<Company> getCompanies();
 }

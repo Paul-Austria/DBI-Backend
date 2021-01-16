@@ -1,9 +1,6 @@
 package org.acme.workloads;
 
-import org.acme.Models.Episode;
-import org.acme.Models.Genre;
-import org.acme.Models.Series;
-import org.acme.Models.User;
+import org.acme.Models.*;
 
 import javax.enterprise.context.RequestScoped;
 import java.util.List;
@@ -45,7 +42,7 @@ public class StreamingService implements IStreamingService {
     }
 
     @Override
-    public boolean addSeries(Series series) {
+    public boolean addSeries(SeriesDTO series) {
         return streamingRepository.addSeries(series);
     }
 
@@ -82,6 +79,56 @@ public class StreamingService implements IStreamingService {
     @Override
     public List<Series> getSeriesByGenre(int id) {
         return streamingRepository.getSeriesByGenre(id);
+    }
+
+    @Override
+    public List<Series> getBookmarkedSeries(int UserID) {
+        return streamingRepository.getBookmarkedSeries(UserID);
+    }
+
+    @Override
+    public boolean bookmarkSeries(int UserID, int SeriesID) {
+        return streamingRepository.bookmarkSeries(UserID, SeriesID);
+    }
+
+    @Override
+    public Bookmark getBookMark(int UserID, int SeriesID) {
+        return streamingRepository.getBookMark(UserID, SeriesID);
+    }
+
+    @Override
+    public List<Episode> getWatchedEpisodes(int UserID) {
+        return streamingRepository.getWatchedEpisodes(UserID);
+    }
+
+    @Override
+    public List<Episode> getWatchedEpisodes(int UserID, int SeriesID) {
+        return streamingRepository.getWatchedEpisodes(UserID, SeriesID);
+    }
+
+    @Override
+    public boolean addToWatch(int UserID, int EpisodeID) {
+        return streamingRepository.addToWatch(UserID, EpisodeID);
+    }
+
+    @Override
+    public Watchlist getWatched(int UserID, int EpisodeID) {
+        return streamingRepository.getWatched(UserID, EpisodeID);
+    }
+
+    @Override
+    public Company getCompany(int id) {
+        return streamingRepository.getCompany(id);
+    }
+
+    @Override
+    public boolean addCompany(Company company) {
+        return streamingRepository.addCompany(company);
+    }
+
+    @Override
+    public List<Company> getCompanies() {
+        return streamingRepository.getCompanies();
     }
 
 

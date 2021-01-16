@@ -2,6 +2,8 @@ package org.acme.Models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "streaming.user")
@@ -15,6 +17,20 @@ public class User {
     private String Image;
     private String email;
 
+    @OneToMany(mappedBy = "user")
+    private List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+
+    @OneToMany(mappedBy = "parentUser")
+    private List<Watchlist> watchlists = new ArrayList<Watchlist>();
+
+
+    public void setWatchlists(List<Watchlist> watchlists) {
+        this.watchlists = watchlists;
+    }
+
+    public void setBookmarks(List<Bookmark> bookmarks) {
+        this.bookmarks = bookmarks;
+    }
 
     public String getPassword() {
         return password;

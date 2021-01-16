@@ -25,12 +25,24 @@ Content-Type: application/json
 "email" : "test23@gmail.com",
 "password": "password"
 }
+###
 
+// add Company
+POST http://localhost:8080/stream/Company
+Content-Type: application/json
 
+{
+"name": "company name"
+}
+###
+//get single Company by id
+GET http://localhost:8080/stream/Company/0
+###
+//Get all Companies
+GET http://localhost:8080/stream/Company
 ###
 //Get all series
 GET http://localhost:8080/stream/Series/all
-
 ###
 // add series
 POST http://localhost:8080/stream/Series
@@ -41,6 +53,7 @@ Content-Type: application/json
 "name" : "SeriesNameNew",
   "description": "text",
   "airdate": "2020-02-20",
+  "companyid": 0,
   "genreid": 1,
   "rating": 4
 }
@@ -48,10 +61,10 @@ Content-Type: application/json
 ###
 //get single series
 
-GET http://localhost:8080/stream/Series/0
+GET http://localhost:8080/stream/Series/1
 
 ###
-//Get all episodes to one series
+//Get all episodes of one series
 GET  http://localhost:8080/stream/Series/1/Episodes
 
 ###
@@ -85,3 +98,39 @@ Content-Type: application/json
 {
   "name": "Genre Name"
 }
+
+###
+// get all bookmarked shows for a User
+GET http://localhost:8080/stream/Bookmark/0
+
+###
+//Check if a series has been bookmarked returns true if it isnt returns true if it is
+// GET http://localhost:8080/stream/Bookmark/{{userID}}/{{seriesID}}
+GET http://localhost:8080/stream/Bookmark/0/1
+
+###
+//Bookmark or umbookmark a show returns true if it has been bookmarked returns false if it has been unbookmarked
+//POST http://localhost:8080/stream/Bookmark/{{userID}}/{{seriesID}}
+POST http://localhost:8080/stream/Bookmark/0/1
+
+###
+//Get all watched Episodes of a User
+
+GET http://localhost:8080/stream/Watchlist/1
+
+###
+//Get all watched episodes of a Series
+//GET https://localhost:8080/stream/Series/Watchlist/{{userID}}/{{SeriesID}}
+GET http://localhost:8080/stream/Series/Watchlist/1/1
+
+###
+// add to Watchlist returns true or false
+//POST http://localhost:8080/stream/WatchList/{{userID}}/{{EpisodeID}}
+POST http://localhost:8080/stream/WatchList/1/1
+
+###
+//check if a episode has been watched returns true or false
+// GET https://localhost:8080/stream/hasWatched/{{userID}}/{{EpisodeID}}
+GET http://localhost:8080/stream/hasWatched/1/1
+
+###

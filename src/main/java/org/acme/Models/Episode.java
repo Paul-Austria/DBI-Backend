@@ -2,6 +2,8 @@ package org.acme.Models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "streaming.episode")
@@ -18,6 +20,16 @@ public class Episode {
     String description;
     String videoLink;
 
+    @OneToMany(mappedBy = "parentEpisode")
+    private List<Watchlist> watchlist = new ArrayList<Watchlist>();
+
+    public List<Watchlist> setWatchList() {
+        return watchlist;
+    }
+
+    public void setEpisodes(List<Watchlist> episodes) {
+        this.watchlist = episodes;
+    }
 
     public int getId() {
         return id;

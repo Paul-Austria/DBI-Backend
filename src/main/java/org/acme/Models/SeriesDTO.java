@@ -11,6 +11,16 @@ public class SeriesDTO {
     private int episodeCount;
     private  int genreid;
     private  float rating;
+    private int Companyid;
+
+
+    public int getCompanyid() {
+        return Companyid;
+    }
+
+    public void setCompanyid(int companyid) {
+        Companyid = companyid;
+    }
 
     public int getId() {
         return Id;

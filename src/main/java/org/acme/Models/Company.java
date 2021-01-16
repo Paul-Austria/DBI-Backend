@@ -1,21 +1,22 @@
 package org.acme.Models;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "streaming.genre")
-public class Genre {
+@Table(name = "streaming.company")
+public class Company {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     int id;
-    String name;
+    private String name;
 
-    @OneToMany(mappedBy = "genre")
-    private List<Series> series = new ArrayList<Series>();
-
-
+    @OneToMany(mappedBy = "company")
+    private List<Series> series;
 
     public void setSeries(List<Series> series) {
         this.series = series;

@@ -21,12 +21,23 @@ public class Series {
     @JoinColumn(name = "genreId")
     private Genre genre;
 
+    @ManyToOne
+    @JoinColumn(name="companyID")
+    private Company company;
     private  float rating;
 
     @OneToMany(mappedBy = "parent")
     private List<Episode> episodes = new ArrayList<Episode>();
 
 
+
+    @OneToMany(mappedBy = "series")
+    private List<Bookmark> bookmarks;
+
+
+    public void setBookmarks(List<Bookmark> bookmarks) {
+        this.bookmarks = bookmarks;
+    }
 
     public void setEpisodes(List<Episode> episodes) {
         this.episodes = episodes;
@@ -90,6 +101,18 @@ public class Series {
 
     public float getRating() {
         return rating;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public List<Bookmark> getBookmarks() {
+        return bookmarks;
     }
 
     public void setRating(float rating) {

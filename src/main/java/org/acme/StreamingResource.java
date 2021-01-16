@@ -70,7 +70,7 @@ public class StreamingResource {
     @POST
     @Transactional
     @Path("Series")
-    public Response addSeries(Series series){
+    public Response addSeries(SeriesDTO series){
         boolean result = streamingService.addSeries(series);
         return (result ? Response.ok() : Response.status(Response.Status.BAD_REQUEST)).build();
     }
@@ -114,5 +114,83 @@ public class StreamingResource {
     public Response addGenre(Genre genre)
     {
         return Response.ok(streamingService.addGenre(genre)).build();
+    }
+
+    @GET
+    @Path("Bookmark/{userID}")
+    public Response getBookmarks(@PathParam("userID") int UserID)
+    {
+        return Response.ok(streamingService.getBookmarkedSeries(UserID)).build();
+    }
+
+    @GET
+    @Path("Bookmark/{userID}/{seriesID}")
+    public Response getBookmark(@PathParam("userID") int UserID, @PathParam("seriesID") int SeriesID)
+    {
+        if(streamingService.getBookMark(UserID, SeriesID) == null)
+        {
+            return Response.ok(false).build();
+        }
+
+        return Response.ok(true).build();
+    }
+
+    @POST
+    @Transactional
+    @Path("Bookmark/{userID}/{seriesID}")
+    public Response Bookmark(@PathParam("userID") int UserID, @PathParam("seriesID") int SeriesID)
+    {
+        return Response.ok(streamingService.bookmarkSeries(UserID, SeriesID)).build();
+    }
+
+    @GET
+    @Path("Watchlist/{userID}")
+    public Response WatchList(@PathParam("userID") int UserID)
+    {
+        return Response.ok(streamingService.getWatchedEpisodes(UserID)).build();
+    }
+
+    @GET
+    @Path("Series/Watchlist/{userID}/{SeriesID}")
+    public Response WatchList(@PathParam("userID") int UserID, @PathParam("SeriesID") int SeriesID)
+    {
+        return Response.ok(streamingService.getWatchedEpisodes(UserID, SeriesID)).build();
+    }
+
+    @POST
+    @Transactional
+    @Path("WatchList/{userID}/{EpisodeID}")
+    public Response addWatch(@PathParam("userID") int UserID, @PathParam("EpisodeID") int EpisodeID)
+    {
+        return Response.ok(streamingService.addToWatch(UserID, EpisodeID)).build();
+    }
+
+    @GET
+    @Path("hasWatched/{userID}/{EpisodeID}")
+    public Response getWatch(@PathParam("userID") int UserID, @PathParam("EpisodeID") int EpisodeID)
+    {
+        return Response.ok(streamingService.getWatched(UserID, EpisodeID) != null).build();
+    }
+
+    @POST
+    @Transactional
+    @Path("Company")
+    public Response addCompany(Company company)
+    {
+        boolean result = streamingService.addCompany(company);
+        return (result ? Response.ok() : Response.status(Response.Status.BAD_REQUEST)).build();
+    }
+
+    @GET
+    @Path("Company/{id}")
+    public Response GetCompany(@PathParam("id") int id)
+    {
+        return Response.ok(streamingService.getCompany(id)).build();
+    }
+
+    @GET
+    @Path("Company")
+    public Response getCompanies(){
+        return Response.ok(streamingService.getCompanies()).build();
     }
 }
