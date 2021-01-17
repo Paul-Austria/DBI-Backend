@@ -30,10 +30,16 @@ public class Series {
     private List<Episode> episodes = new ArrayList<Episode>();
 
 
+    @OneToMany(mappedBy = "CommentSeries")
+    private List<Comments> comments;
 
     @OneToMany(mappedBy = "series")
     private List<Bookmark> bookmarks;
 
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
 
     public void setBookmarks(List<Bookmark> bookmarks) {
         this.bookmarks = bookmarks;

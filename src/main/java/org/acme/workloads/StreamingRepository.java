@@ -212,4 +212,28 @@ public class StreamingRepository  implements IStreamingRepository{
         var query = entityManager.createQuery("select p from Company p", Company.class);
         return query.getResultList();
     }
+
+    @Override
+    public boolean comment(CommentDTO comment) {
+        if(getUser(comment.getUID()) == null) {
+            System.out.println("User doesnt exist"+comment.getUID());
+            return false;
+        }
+        if(getUser(comment.getSID()) ==null) return false;
+        Comments co = new Comments();
+        co.setCommentSeries(getSeries(comment.getSID()));
+        co.setParentUser(getUser(comment.getUID()));
+        co.setComment(comment.getComments());;
+        entityManager.persist(co);
+        return true;
+    }
+
+    @Override
+    public List<Comments> getComments(int SeriesID) {
+        if(getSeries(SeriesID) == null) return null;
+        var query = entityManager.createQuery("select c from Comments c where c.CommentSeries= :ID", Comments.class);
+        query.setParameter("ID", getSeries(SeriesID));
+
+        return query.getResultList();
+    }
 }

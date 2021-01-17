@@ -24,6 +24,13 @@ public class User {
     private List<Watchlist> watchlists = new ArrayList<Watchlist>();
 
 
+    @OneToMany(mappedBy = "parentUser")
+    private List<Comments> comments = new ArrayList<>();
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
     public void setWatchlists(List<Watchlist> watchlists) {
         this.watchlists = watchlists;
     }

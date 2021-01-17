@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "streaming.watchlist")
 public class Watchlist {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
     int id;
 
     @ManyToOne

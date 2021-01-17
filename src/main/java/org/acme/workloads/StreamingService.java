@@ -131,5 +131,16 @@ public class StreamingService implements IStreamingService {
         return streamingRepository.getCompanies();
     }
 
+    @Override
+    public boolean comment(CommentDTO comment) {
+        return streamingRepository.comment(comment);
+    }
+
+    @Override
+    public List<Comments> getComments(int SeriesID) {
+        return streamingRepository.getComments(SeriesID);
+    }
+
+
 
 }

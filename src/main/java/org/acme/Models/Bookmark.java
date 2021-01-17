@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "streaming.bookmark")
 public class Bookmark {
+
+
     @javax.persistence.Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     int Id;

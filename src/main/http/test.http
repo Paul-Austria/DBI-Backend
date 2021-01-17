@@ -11,6 +11,7 @@ Content-Type: application/json
   "fname" : "TestUser2",
   "lname" : "TestUser2Name",
   "Image" : "ImageLink",
+  "password": "totalySave",
   "email" : "test23@gmail.com"
 }
 
@@ -134,3 +135,16 @@ POST http://localhost:8080/stream/WatchList/1/1
 GET http://localhost:8080/stream/hasWatched/1/1
 
 ###
+// add a Comment
+POST http://localhost:8080/stream/Comment
+Content-Type: application/json
+
+{
+  "UID": 1,
+  "SID": 1,
+  "comments": "This is a comment"
+}
+
+###
+//Get Comments by SeriesID
+GET http://localhost:8080/stream/Comments/1

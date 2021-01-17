@@ -10,6 +10,8 @@ import java.util.List;
 public class Episode {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
     int id;
 
     @ManyToOne

@@ -193,4 +193,22 @@ public class StreamingResource {
     public Response getCompanies(){
         return Response.ok(streamingService.getCompanies()).build();
     }
+
+    @POST
+    @Transactional
+    @Path("Comment")
+    public Response Comment(CommentDTO commentTDO){
+        System.out.println(commentTDO);
+        boolean result = streamingService.comment(commentTDO);
+
+        return (result ? Response.ok() : Response.status(Response.Status.BAD_REQUEST)).build();
+
+    }
+
+    @GET
+    @Path("Comments/{SeriesID}")
+    public Response getComments(@PathParam("SeriesID") int id)
+    {
+        return Response.ok(streamingService.getComments(id)).build();
+    }
 }
