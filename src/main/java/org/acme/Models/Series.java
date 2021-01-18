@@ -33,7 +33,7 @@ public class Series {
     @OneToMany(mappedBy = "CommentSeries")
     private List<Comments> comments;
 
-    @OneToMany(mappedBy = "series")
+    @OneToMany(mappedBy = "BookmarkSeries")
     private List<Bookmark> bookmarks;
 
 
@@ -117,9 +117,7 @@ public class Series {
         this.company = company;
     }
 
-    public List<Bookmark> getBookmarks() {
-        return bookmarks;
-    }
+
 
     public void setRating(float rating) {
         this.rating = rating;

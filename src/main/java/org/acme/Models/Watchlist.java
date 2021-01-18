@@ -12,7 +12,7 @@ public class Watchlist {
 
     @ManyToOne
     @JoinColumn(name = "userid")
-    User parentUser;
+    User watchUser;
 
     @ManyToOne
     @JoinColumn(name = "episodeid")
@@ -26,12 +26,12 @@ public class Watchlist {
         this.id = id;
     }
 
-    public User getParentUser() {
-        return parentUser;
+    public User getWatchUser() {
+        return watchUser;
     }
 
-    public void setParentUser(User parentUser) {
-        this.parentUser = parentUser;
+    public void setWatchUser(User parentUser) {
+        this.watchUser = parentUser;
     }
 
     public Episode getParentEpisode() {

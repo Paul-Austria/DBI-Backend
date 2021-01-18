@@ -15,14 +15,14 @@ public class Bookmark {
     User user;
     @ManyToOne
     @JoinColumn(name = "seriesid")
-    Series series;
+    Series BookmarkSeries;
 
     public Bookmark() {
     }
 
     public Bookmark(User user, Series series) {
         this.user = user;
-        this.series = series;
+        this.BookmarkSeries = series;
     }
 
     public int getId() {
@@ -41,11 +41,11 @@ public class Bookmark {
         this.user = user;
     }
 
-    public Series getSeries() {
-        return series;
+    public Series getBookmarkSeries() {
+        return BookmarkSeries;
     }
 
-    public void setSeries(Series series) {
-        this.series = series;
+    public void setBookmarkSeries(Series series) {
+        this.BookmarkSeries = series;
     }
 }

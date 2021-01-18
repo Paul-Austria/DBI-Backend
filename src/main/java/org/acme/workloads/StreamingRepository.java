@@ -5,8 +5,6 @@ import org.acme.Models.*;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestScoped
@@ -155,7 +153,7 @@ public class StreamingRepository  implements IStreamingRepository{
 
     @Override
     public Bookmark getBookMark(int UserID, int SeriesID) {
-        var query = entityManager.createQuery("Select b from Bookmark b where  b.user = :user and b.series = :series", Bookmark.class);
+        var query = entityManager.createQuery("Select b from Bookmark b where  b.user = :user and b.BookmarkSeries = :series", Bookmark.class);
         query.setParameter("user", getUser(UserID));
         query.setParameter("series", getSeries(SeriesID));
         return query.getResultStream().findFirst().orElse(null);
@@ -163,7 +161,7 @@ public class StreamingRepository  implements IStreamingRepository{
 
     @Override
     public List<Episode> getWatchedEpisodes(int UserID) {
-        var query = entityManager.createQuery("Select w from Watchlist w where w.parentUser = :user");
+        var query = entityManager.createQuery("Select w from Watchlist w where w.watchUser = :user");
         query.setParameter("user", getUser(UserID));
 
         return query.getResultList();
@@ -171,7 +169,7 @@ public class StreamingRepository  implements IStreamingRepository{
 
     @Override
     public List<Episode> getWatchedEpisodes(int UserID, int SeriesID) {
-        var query = entityManager.createQuery("Select w from Watchlist w where w.parentUser = :user and w.parentEpisode.parent = :series");
+        var query = entityManager.createQuery("Select w from Watchlist w where w.watchUser = :user and w.parentEpisode.parent = :series");
         query.setParameter("user", getUser(UserID));
         query.setParameter("series", getSeries(SeriesID));
         return query.getResultList();
@@ -182,7 +180,7 @@ public class StreamingRepository  implements IStreamingRepository{
         if(getWatched(UserID, EpisodeID) == null)
         {
             Watchlist w = new Watchlist();
-            w.setParentUser(getUser(UserID));
+            w.setWatchUser(getUser(UserID));
             w.setParentEpisode(getEpisode(EpisodeID));
             entityManager.persist(w);
             return true;
@@ -196,7 +194,7 @@ public class StreamingRepository  implements IStreamingRepository{
 
     @Override
     public Watchlist getWatched(int UserID, int EpisodeID) {
-        var query = entityManager.createQuery("Select w from Watchlist w where w.parentUser = :user and w.parentEpisode = :episode",Watchlist.class);
+        var query = entityManager.createQuery("Select w from Watchlist w where w.watchUser = :user and w.parentEpisode = :episode",Watchlist.class);
         query.setParameter("user", getUser(UserID));
         query.setParameter("episode", getEpisode(EpisodeID));
         return query.getResultStream().findFirst().orElse(null);

@@ -1,7 +1,7 @@
 
 //Get user by ID
 GET http://localhost:8080/stream/User/1
-
+//works
 ###
 //add new user // returns 200 OK if successfully added
 POST http://localhost:8080/stream/User
@@ -14,7 +14,7 @@ Content-Type: application/json
   "password": "totallySave",
   "email" : "test23@gmail.com"
 }
-
+//works
 ###
 
 // login using password and email
@@ -26,6 +26,7 @@ Content-Type: application/json
 "email" : "test23@gmail.com",
 "password": "totalySave"
 }
+//works
 ###
 
 // add Company
@@ -33,7 +34,7 @@ POST http://localhost:8080/stream/Company
 Content-Type: application/json
 
 {
-"name": "company name"
+"name": "company name 2"
 }
 ###
 //get single Company by id
