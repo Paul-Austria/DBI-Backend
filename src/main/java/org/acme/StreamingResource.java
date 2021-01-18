@@ -206,6 +206,12 @@ public class StreamingResource {
     }
 
     @GET
+    @Path("LoginInfo")
+    public Response getLoginInfo(){
+        return Response.ok(streamingService.getLoginf()).build();
+    }
+
+    @GET
     @Path("Comments/{SeriesID}")
     public Response getComments(@PathParam("SeriesID") int id)
     {

@@ -40,4 +40,7 @@ public interface IStreamingRepository {
 
     boolean comment(CommentDTO comment);
     List<Comments> getComments(int SeriesID);
+
+    List<LogInfo> getLoginf();
+    boolean addLogInfo(User user, String desc);
 }

@@ -4,6 +4,9 @@ import org.acme.Models.*;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestScoped
@@ -28,6 +31,7 @@ public class StreamingRepository  implements IStreamingRepository{
         if(getUser(user.getId()) == null)
         {
             entityManager.persist(user);
+            addLogInfo(user, "Register");
             return true;
         }
         return false;
@@ -40,8 +44,12 @@ public class StreamingRepository  implements IStreamingRepository{
         var query = entityManager.createQuery("select p from User p where p.email = :email and p.password = :fname", User.class);
         query.setParameter("email", email);
         query.setParameter("fname", fname);
-
-        return query.getResultStream().findFirst().orElse(null);
+        User user = query.getResultStream().findFirst().orElse(null);
+        if(user != null)
+        {
+            addLogInfo(user, "login");
+        }
+        return user;
 
     }
 
@@ -235,5 +243,26 @@ public class StreamingRepository  implements IStreamingRepository{
         query.setParameter("ID", getSeries(SeriesID));
 
         return query.getResultList();
+    }
+
+    @Override
+    public List<LogInfo> getLoginf() {
+        var query = entityManager.createQuery("select i from LogInfo i", LogInfo.class);
+        return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public boolean addLogInfo(User user, String desc) {
+        LogInfo l = new LogInfo();
+        l.setLogUser(user);
+        DetailLogInfo detailLogInfo = new DetailLogInfo();
+        l.setDetailLogInfo(detailLogInfo);
+        detailLogInfo.setDescription(desc);
+        java.util.Date date = new java.util.Date();
+        detailLogInfo.setLogindate( date);
+        entityManager.persist(detailLogInfo);
+        entityManager.persist(l);
+        return true;
     }
 }

@@ -3,7 +3,7 @@
 GET http://localhost:8080/stream/User/1
 
 ###
-//add new user
+//add new user // returns 200 OK if successfully added
 POST http://localhost:8080/stream/User
 Content-Type: application/json
 
@@ -11,7 +11,7 @@ Content-Type: application/json
   "fname" : "TestUser2",
   "lname" : "TestUser2Name",
   "Image" : "ImageLink",
-  "password": "totalySave",
+  "password": "totallySave",
   "email" : "test23@gmail.com"
 }
 
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
 "email" : "test23@gmail.com",
-"password": "password"
+"password": "totalySave"
 }
 ###
 
@@ -148,3 +148,8 @@ Content-Type: application/json
 ###
 //Get Comments by SeriesID
 GET http://localhost:8080/stream/Comments/1
+
+###
+//get LoginInfo
+
+GET http://localhost:8080/stream/LoginInfo

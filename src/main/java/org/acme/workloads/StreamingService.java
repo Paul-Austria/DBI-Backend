@@ -141,6 +141,10 @@ public class StreamingService implements IStreamingService {
         return streamingRepository.getComments(SeriesID);
     }
 
+    @Override
+    public List<LogInfo> getLoginf() {
+        return streamingRepository.getLoginf();
+    }
 
 
 }

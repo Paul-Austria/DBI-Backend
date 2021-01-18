@@ -38,4 +38,6 @@ public interface IStreamingService {
 
     boolean comment(CommentDTO comment);
     List<Comments> getComments(int SeriesID);
+
+    List<LogInfo> getLoginf();
 }
