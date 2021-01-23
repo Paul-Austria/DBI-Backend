@@ -251,6 +251,17 @@ public class StreamingRepository  implements IStreamingRepository{
     }
 
     @Override
+    public boolean deleteComment(int id) {
+
+        var query = entityManager.createQuery("select c from Comments c where c.Id= :ID", Comments.class);
+        query.setParameter("ID", id);
+        Comments comment = query.getResultStream().findFirst().orElse(null);
+        if(comment == null)return false;
+        entityManager.remove(comment);
+        return true;
+    }
+
+    @Override
     public List<LogInfo> getLoginf() {
         var query = entityManager.createQuery("select i from LogInfo i", LogInfo.class);
         return query.getResultList();

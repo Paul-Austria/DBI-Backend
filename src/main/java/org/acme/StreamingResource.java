@@ -217,4 +217,13 @@ public class StreamingResource {
     {
         return Response.ok(streamingService.getComments(id)).build();
     }
+
+
+    @DELETE
+    @Transactional
+    @Path("Comment/{id}")
+    public Response deleteComment(@PathParam("id") int id)
+    {
+        return Response.ok(streamingService.deleteComment(id)).build();
+    }
 }

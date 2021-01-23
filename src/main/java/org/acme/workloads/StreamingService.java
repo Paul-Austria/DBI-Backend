@@ -132,6 +132,11 @@ public class StreamingService implements IStreamingService {
     }
 
     @Override
+    public boolean deleteComment(int id) {
+        return streamingRepository.deleteComment(id);
+    }
+
+    @Override
     public boolean comment(CommentDTO comment) {
         return streamingRepository.comment(comment);
     }

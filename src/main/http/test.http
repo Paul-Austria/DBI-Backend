@@ -151,6 +151,11 @@ Content-Type: application/json
 GET http://localhost:8080/stream/Comments/1
 
 ###
+//delete a comment by commentid
+DELETE http://localhost:8080/stream/Comment/1
+
+
+###
 //get LoginInfo
 
 GET http://localhost:8080/stream/LoginInfo

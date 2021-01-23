@@ -37,6 +37,7 @@ public interface IStreamingService {
     Company getCompany(int id);
     boolean addCompany(Company company);
     List<Company> getCompanies();
+    boolean deleteComment(int id);
 
     boolean comment(CommentDTO comment);
     List<Comments> getComments(int SeriesID);
