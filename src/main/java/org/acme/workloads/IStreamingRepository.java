@@ -8,7 +8,7 @@ public interface IStreamingRepository {
 
     User getUser(int Id);
     boolean addUser(User user);
-
+    User getUser(String email);
     User login(String email, String fname);
 
     List<Series> getSeries();

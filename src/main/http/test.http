@@ -103,17 +103,17 @@ Content-Type: application/json
 
 ###
 // get all bookmarked shows for a User
-GET http://localhost:8080/stream/Bookmark/0
+GET http://localhost:8080/stream/Bookmark/1
 
 ###
 //Check if a series has been bookmarked returns true if it isnt returns true if it is
 // GET http://localhost:8080/stream/Bookmark/{{userID}}/{{seriesID}}
-GET http://localhost:8080/stream/Bookmark/0/1
+GET http://localhost:8080/stream/Bookmark/1/1
 
 ###
 //Bookmark or umbookmark a show returns true if it has been bookmarked returns false if it has been unbookmarked
 //POST http://localhost:8080/stream/Bookmark/{{userID}}/{{seriesID}}
-POST http://localhost:8080/stream/Bookmark/0/1
+POST http://localhost:8080/stream/Bookmark/1/1
 
 ###
 //Get all watched Episodes of a User

@@ -7,6 +7,8 @@ import java.util.List;
 public interface IStreamingService {
     boolean addUser(User user);
     User getUser(int Id);
+
+
     User login(String email, String fname);
 
     List<Series> getSeries();

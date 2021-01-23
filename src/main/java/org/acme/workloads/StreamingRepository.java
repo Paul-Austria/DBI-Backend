@@ -26,7 +26,7 @@ public class StreamingRepository  implements IStreamingRepository{
 
     @Override
     public boolean addUser(User user) {
-        if(getUser(user.getId()) == null)
+        if(getUser(user.getEmail()) == null)
         {
             entityManager.persist(user);
             addLogInfo(user, "Register");
@@ -35,6 +35,13 @@ public class StreamingRepository  implements IStreamingRepository{
         return false;
     }
 
+    @Override
+    public User getUser(String email) {
+        var query = entityManager.createQuery("select p from User p where p.email = :email", User.class);
+        query.setParameter("email",email);
+
+        return query.getResultStream().findFirst().orElse(null);
+    }
 
 
     @Override
