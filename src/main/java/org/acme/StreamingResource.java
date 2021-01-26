@@ -37,6 +37,15 @@ public class StreamingResource {
 
     @Transactional
     @POST
+    @Path("UpdateUser")
+    public Response userUpdate(User user)
+    {
+        boolean result = streamingService.updateUser(user);
+        return (result ? Response.ok() : Response.status(Response.Status.BAD_REQUEST)).build();
+    }
+
+    @Transactional
+    @POST
     @Path("Login")
     public Response login(Login login)
     {

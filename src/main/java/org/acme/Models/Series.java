@@ -37,6 +37,8 @@ public class Series {
     private List<Bookmark> bookmarks;
 
 
+
+
     public void setComments(List<Comments> comments) {
         this.comments = comments;
     }

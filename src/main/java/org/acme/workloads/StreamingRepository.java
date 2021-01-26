@@ -59,6 +59,12 @@ public class StreamingRepository  implements IStreamingRepository{
     }
 
     @Override
+    public boolean updateUser(User user) {
+        entityManager.merge(user);
+        return true;
+    }
+
+    @Override
     public List<Series> getSeries() {
         var query = entityManager.createQuery("select p from Series p", Series.class);
         return query.getResultList();

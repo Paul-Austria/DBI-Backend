@@ -27,6 +27,11 @@ public class StreamingService implements IStreamingService {
     }
 
     @Override
+    public boolean updateUser(User user) {
+        return streamingRepository.updateUser(user);
+    }
+
+    @Override
     public User login(String email, String fname) {
         return  streamingRepository.login(email, fname);
     }

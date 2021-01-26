@@ -14,7 +14,7 @@ public class User {
     private String fname;
     private String lname;
     private String password;
-    private String Image;
+    private String image;
     private String email;
 
     @OneToMany(mappedBy = "user")
@@ -28,6 +28,7 @@ public class User {
 
     @OneToMany(mappedBy = "parentUser")
     private List<Comments> comments = new ArrayList<>();
+
 
 
     public void setLogInfos(List<LogInfo> logInfos) {
@@ -79,11 +80,11 @@ public class User {
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
     public String getEmail() {

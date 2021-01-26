@@ -10,9 +10,9 @@ Content-Type: application/json
 {
   "fname" : "TestUser2",
   "lname" : "TestUser2Name",
-  "Image" : "ImageLink",
+  "image" : "ImageLink",
   "password": "totallySave",
-  "email" : "test23@gmail.com"
+  "email" : "test223233@gmail.com"
 }
 //works
 ###
@@ -23,10 +23,24 @@ POST http://localhost:8080/stream/Login
 Content-Type: application/json
 
 {
-"email" : "test23@gmail.com",
-"password": "totalySave"
+"email" : "test223233@gmail.com",
+"password": "totallySave"
 }
 //works
+###
+
+POST  http://localhost:8080/stream/UpdateUser
+Content-Type: application/json
+
+{
+  "id" : 1,
+  "fname" : "TestUser99",
+  "lname" : "TestUser2Name",
+  "image" : "ImageLink",
+  "password": "totallySave",
+  "email" : "test23@gmail.com"
+}
+
 ###
 
 // add Company

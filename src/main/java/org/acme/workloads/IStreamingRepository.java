@@ -10,7 +10,7 @@ public interface IStreamingRepository {
     boolean addUser(User user);
     User getUser(String email);
     User login(String email, String fname);
-
+    boolean updateUser(User user);
     List<Series> getSeries();
 
     Series getSeries(int id);
