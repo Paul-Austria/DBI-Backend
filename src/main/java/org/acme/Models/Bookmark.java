@@ -24,19 +24,18 @@ public class Bookmark {
         this.user = user;
         this.BookmarkSeries = series;
     }
-
+/*
     public int getId() {
         return Id;
     }
-
+*/
     public void setId(int id) {
         Id = id;
     }
-
-    public User getUser() {
+ /*   public User getUser() {
         return user;
     }
-
+*/
     public void setUser(User user) {
         this.user = user;
     }

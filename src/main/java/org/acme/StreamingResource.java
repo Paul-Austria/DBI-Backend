@@ -207,7 +207,6 @@ public class StreamingResource {
     @Transactional
     @Path("Comment")
     public Response Comment(CommentDTO commentTDO){
-        System.out.println(commentTDO);
         boolean result = streamingService.comment(commentTDO);
 
         return (result ? Response.ok() : Response.status(Response.Status.BAD_REQUEST)).build();

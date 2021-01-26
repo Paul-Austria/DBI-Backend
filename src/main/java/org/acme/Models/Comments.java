@@ -28,8 +28,8 @@ public class Comments {
         this.CommentSeries = parentSeries;
     }
 
-    public User getParentUser() {
-        return parentUser;
+    public String getParentUser() {
+        return parentUser.getFname() + " " +parentUser.getLname();
     }
 
     public void setParentUser(User parentUser) {

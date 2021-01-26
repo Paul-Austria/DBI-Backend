@@ -238,7 +238,7 @@ public class StreamingRepository  implements IStreamingRepository{
             System.out.println("User doesnt exist"+comment.getUID());
             return false;
         }
-        if(getUser(comment.getSID()) ==null) return false;
+        if(getSeries(comment.getSID()) ==null) return false;
         Comments co = new Comments();
         co.setCommentSeries(getSeries(comment.getSID()));
         co.setParentUser(getUser(comment.getUID()));
